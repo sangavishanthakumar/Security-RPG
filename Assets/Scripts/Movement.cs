@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     public float speed;
 
+    private Vector3 direction;
+
     public Animator animator;
 
     private void Update()
@@ -14,12 +16,19 @@ public class Movement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal"); // left right
         float vertical = Input.GetAxisRaw("Vertical"); // up down
 
-        Vector3 direction = new Vector3(horizontal, vertical);
+        direction = new Vector3(horizontal, vertical, 0);
+
+        // move the player
+        this.transform.position += direction.normalized * speed * Time.deltaTime;
 
         AnimateMovement(direction);
 
-        transform.position += direction * speed * Time.deltaTime;
+    }
 
+    private void FixedUpdate()
+    {
+        // move the player
+        this.transform.position += direction.normalized * speed * Time.deltaTime;
     }
 
     // animate player 
