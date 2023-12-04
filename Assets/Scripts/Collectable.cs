@@ -8,6 +8,7 @@ using UnityEngine;
  */
 public class Collectable : MonoBehaviour
 {
+    public CollectableType type;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,10 +17,16 @@ public class Collectable : MonoBehaviour
         if(player)
         {
             Debug.Log("Triggered with " + collision.gameObject.name);
-            player.usbIsCollected = true;
+            player.inventory.Add(type);
             //player.usb++;
             Destroy(this.gameObject);
         }
     }
 
+
+}
+
+public enum CollectableType
+{
+    NONE, USB //NONE = 0, USB = 1 by default
 }

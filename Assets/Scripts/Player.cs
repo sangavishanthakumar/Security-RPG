@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool usbIsCollected = false;
-    //public int usb = 0;
+    // public bool usbIsCollected = false;
+    public Inventory inventory;
+
+    private void Awake()
+    {
+        inventory = new Inventory(4);
+    }
 }
